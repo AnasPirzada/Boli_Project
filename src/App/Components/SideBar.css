@@ -1,0 +1,74 @@
+.sidebardiv {
+  color: #D1D1D1;
+  text-align: center;
+  margin-left: 10%;
+  padding: 9px;
+  margin-top: 15px;
+}
+
+.sidebardiv p {
+  padding-left: 10px;
+  margin-bottom: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* .sidebardiv img {
+  width: 18.15px;
+  height: 19.54px;
+}
+
+*/
+.sidebarctivetab {
+  color: #00BF63;
+}
+
+.activeicon {
+  fill: #00BF63 !important;
+}
+
+.sidebarctivetab img {
+  filter: invert(63%) sepia(12%) saturate(2684%) hue-rotate(93deg) brightness(108%) contrast(73%);
+}
+
+.mobilenone {
+  display: block;
+  text-align: center;
+  padding-left: 20px;
+}
+
+.desktopnone {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebardiv p {
+    display: none;
+  }
+
+  .sidebardiv {
+    justify-content: center !important;
+  }
+
+  .AllTabbutn h4 {
+    font-size: 12px;
+    text-align: start;
+    margin-left: 2px !important;
+  }
+
+  .desktopnone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  .mobilenone {
+    display: none;
+  }
+
+
+
+}

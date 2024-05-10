@@ -1,0 +1,1 @@
+export const baseurl = 'https://boli.azurewebsites.net';

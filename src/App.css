@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap");
+@import 'react-toastify/dist/ReactToastify.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+}
+
+.buttonbg {
+  background-color: #00bf63;
+}
+
+.textColor {
+  color: #00bf63;
+}
+
+.textColordull {
+  color: #717171;
+}
+
+.textColordark {
+  color: #222222;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.tab-list-left {
+  float: left;
+}
+
+.tab-list-right {
+  float: right;
+}
+
+.custom-scrollbar {
+  overflow-y: auto;
+  max-height: 50%;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #00bf63;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.resfont {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobilewidth {
+    width: 100% !important;
+  }
+
+  .resfontlogo {
+    font-size: 30px !important;
+  }
+
+  .resfont {
+    font-size: 10px !important;
+  }
+
+  .dis {
+    display: none;
+  }
+
+  .mart100 {
+    margin-top: 100px !important;
+  }
+
+  .mobv-login {
+    width: 95%;
+    margin-top: 5rem !important;
+  }
+
+  .mobv-img {
+    margin-left: 330px !important;
+  }
+}
