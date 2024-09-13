@@ -1,9 +1,21 @@
+/* Sidebar container */
+.AllTabbutn {
+  background-color: #FFFFFF;
+  position: relative;
+  min-height: 100vh;
+  width: full;
+  /* Ensure it takes the full height of the viewport */
+}
+
+/* Sidebar tab items */
 .sidebardiv {
   color: #D1D1D1;
   text-align: center;
-  margin-left: 10%;
-  padding: 9px;
+  padding: 10px;
   margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .sidebardiv p {
@@ -14,12 +26,7 @@
   font-weight: 500;
 }
 
-/* .sidebardiv img {
-  width: 18.15px;
-  height: 19.54px;
-}
-
-*/
+/* Active tab styling */
 .sidebarctivetab {
   color: #00BF63;
 }
@@ -32,16 +39,7 @@
   filter: invert(63%) sepia(12%) saturate(2684%) hue-rotate(93deg) brightness(108%) contrast(73%);
 }
 
-.mobilenone {
-  display: block;
-  text-align: center;
-  padding-left: 20px;
-}
-
-.desktopnone {
-  display: none;
-}
-
+/* Hide text for mobile view */
 @media screen and (max-width: 700px) {
   .sidebardiv p {
     display: none;
@@ -51,10 +49,10 @@
     justify-content: center !important;
   }
 
-  .AllTabbutn h4 {
+  .AllTabbutn p {
     font-size: 12px;
-    text-align: start;
-    margin-left: 2px !important;
+    text-align: center;
+    margin-left: 0 !important;
   }
 
   .desktopnone {
@@ -62,13 +60,64 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-left: 20px;
+    margin-left: 0;
   }
 
   .mobilenone {
     display: none;
   }
+}
 
+/* Show sidebar items in a column for mobile */
+@media screen and (max-width: 700px) {
+  .AllTabbutn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .sidebardiv {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    margin: 5px 0;
+  }
+}
 
+/* Adjust logout button styling */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.logout-btn img {
+  margin-right: 10px;
+}
+
+.logout-btn p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #00BF63;
+}
+
+/* Modal styles */
+.modal-content {
+  border-radius: 24px;
+  background-color: #FFFFFF;
+}
+
+.modal-header,
+.modal-footer {
+  border: none;
+}
+
+.modal-footer button {
+  border-radius: 18px;
 }

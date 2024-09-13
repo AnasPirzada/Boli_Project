@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Placeholder } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
-import './table.css';
 import { baseUrl } from '../../Components/constants.jsx';
+import './table.css';
+
 const RegisteredTable = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,16 +17,13 @@ const RegisteredTable = () => {
           throw new Error('Token not found');
         }
 
-        const response = await fetch(
-          `${baseUrl}/api/restaurant/getCustomers`, // Replace 'your-get-api-endpoint' with your actual API endpoint
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await fetch(`${baseUrl}/api/restaurant/getCustomers`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
         if (!response.ok) {
           const errorMessage = await response.text();
@@ -32,9 +31,8 @@ const RegisteredTable = () => {
         }
 
         const jsonData = await response.json();
-        setData(jsonData.customers); // Assuming your API response is an array of objects similar to the 'data' array
+        setData(jsonData.customers);
         console.log(jsonData.customers);
-     
       } catch (error) {
         console.error('API Error:', error.message);
         setError('Failed to fetch data. Please try again later.');
@@ -47,7 +45,46 @@ const RegisteredTable = () => {
   }, []); // Empty dependency array to run the effect only once on component mount
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className='px-5'>
+        <Table responsive>
+          <thead>
+            <tr>
+              <th className='tablehead'>No</th>
+              {/* <th className='tablehead text-nowrap '>Profile Image</th> */}
+              <th className='tablehead'>Name</th>
+              <th className='tablehead'>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 5 }).map((_, index) => (
+              <tr key={index}>
+                <td className='tabledata'>
+                  <Placeholder as='div' animation='wave'>
+                    <Placeholder xs={6} />
+                  </Placeholder>
+                </td>
+                {/* <td className='tabledata'>
+                  <Placeholder as='div' animation='wave'>
+                    <Placeholder xs={6} />
+                  </Placeholder>
+                </td> */}
+                <td className='tabledata'>
+                  <Placeholder as='div' animation='wave'>
+                    <Placeholder xs={6} />
+                  </Placeholder>
+                </td>
+                <td className='tabledata'>
+                  <Placeholder as='div' animation='wave'>
+                    <Placeholder xs={6} />
+                  </Placeholder>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    );
   }
 
   if (error) {

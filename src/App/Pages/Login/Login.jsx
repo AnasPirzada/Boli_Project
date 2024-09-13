@@ -1,6 +1,6 @@
-import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { React, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import Redirect
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const Promiseres = new Promise(resolve => setTimeout(resolve, 3000));
+  const Promiseres = new Promise(resolve => setTimeout(resolve, 0));
   const initialValues = {
     email: '',
     password: '',
@@ -34,7 +34,7 @@ const Login = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
-        'https://boli.azurewebsites.net/api/restaurant/login',
+        'https://boli-app.azurewebsites.net/api/restaurant/login',
         values
       );
       const token = response.data.token;
@@ -205,7 +205,7 @@ const Login = () => {
         </div>
 
         <div className='object-contain  d-md-flex d-none  '>
-          <img src='/Frame 1.png' alt='' srcset='' className='w-100 h-auto' />
+          <img src='/Frame 1.png' alt='' className='w-100 h-auto' />
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import { Col, Container, Row } from 'react-bootstrap';
-import SideBar from '../../Components/Sidebar.jsx';
 import NavBar from '../../Components/Navbar.jsx';
+import SideBar from '../../Components/Sidebar.jsx';
 import MainPage from './mainPage.jsx';
 
 const index = () => {
@@ -16,17 +16,19 @@ const index = () => {
           >
             <SideBar activetabe='Settings' />
           </Col>
-          <Col
-            md={10}
-            xs={10}
-            className='custom-scrollbar'
-            style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}
-          >
+          <Col md={10} xs={10}>
             <Row>
               <NavBar />
             </Row>
 
-            <Row>
+            <Row
+              className='custom-scrollbar'
+              style={{
+                height: '100vh',
+                overflowY: 'auto',
+                overflowX: 'hidden',
+              }}
+            >
               <MainPage />
             </Row>
           </Col>

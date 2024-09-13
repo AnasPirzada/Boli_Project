@@ -54,7 +54,7 @@ export const Upcoming = () => {
   }
 
   if (!Array.isArray(data) || data.length === 0) {
-    return <div>No upcoming reservations found.</div>;
+    return <div className='ms-10'>No upcoming reservations found.</div>;
   }
 
   return (
@@ -67,6 +67,7 @@ export const Upcoming = () => {
               color: '#4C535F',
               fontSize: '14px',
               fontWeight: '500',
+              paddingLeft:'10px'
             }}
           >
             {item.maindate}

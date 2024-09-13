@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Navbar from '../../Components/Navbar.jsx';
 import SideBar from '../../Components/Sidebar.jsx';
-import UpcomingReservations from './Upcomming.jsx';
 import CanceledReservations from './Canceled.jsx';
+import UpcomingReservations from './Upcomming.jsx';
 const index = () => {
   const [activeButton, setActiveButton] = useState('upcoming'); // Initial active button
 
@@ -26,16 +26,14 @@ const index = () => {
           >
             <SideBar activetabe='Reservations' />
           </Col>
-          <Col
-            md={10}
-            xs={10}
-            className='custom-scrollbar'
-            style={{ height: '100vh', overflowY: 'auto' }}
-          >
+          <Col md={10} xs={10} className=''>
             <Row>
               <Navbar />
             </Row>
-            <Row className='mt-4'>
+            <Row
+              className='mt-4 custom-scrollbar'
+              style={{ height: '100vh', overflowY: 'auto' }}
+            >
               <div>
                 <div>
                   <div className='m-2 mb-4 pb-3 shadow rounded-3 '>

@@ -26,16 +26,14 @@ export const index = () => {
           >
             <SideBar activetabe='History' />
           </Col>
-          <Col
-            md={10}
-            xs={10}
-            className='custom-scrollbar'
-            style={{ height: '100vh', overflowY: 'auto' }}
-          >
+          <Col md={10} xs={10}>
             <Row>
               <Navbar />
             </Row>
-            <Row className='mt-4'>
+            <Row
+              className='mt-4 custom-scrollbar'
+              style={{ height: '100vh', overflowY: 'auto' }}
+            >
               <div>
                 <div>
                   <div className='m-2 mb-4 pb-3 shadow rounded-3 '>

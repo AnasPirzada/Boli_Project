@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import Registeredtable from './Registeredtable.jsx';
 import Navbar from '../../Components/Navbar.jsx';
 import SideBar from '../../Components/Sidebar.jsx';
+import Registeredtable from './Registeredtable.jsx';
 
 export const index = () => {
   return (
@@ -20,16 +20,14 @@ export const index = () => {
           >
             <SideBar activetabe='Registered' />
           </Col>
-          <Col
-            md={10}
-            xs={10}
-            className='custom-scrollbar'
-            style={{ height: '100vh', overflowY: 'auto' }}
-          >
+          <Col md={10} xs={10}>
             <Row>
               <Navbar />
             </Row>
-            <Row className='mt-4'>
+            <Row
+              className='mt-4 custom-scrollbar'
+              style={{ height: '100vh', overflowY: 'auto' }}
+            >
               <div>
                 <div>
                   <div className='m-2 mb-4 pb-3 shadow rounded-3 '>

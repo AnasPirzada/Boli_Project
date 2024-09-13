@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { baseurl } from '../../../../const.js';
 import Navbar from '../../../Components/Navbar.jsx';
 import SideBar from '../../../Components/Sidebar.jsx';
-import { baseurl } from '../../../../const.js';
 export const index = () => {
-
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
 
@@ -21,12 +20,15 @@ export const index = () => {
 
         const config = {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         };
 
-        const response = await axios.get(`${baseurl}/api/restaurant/getCategories`, config);
-        console.log(response.data.categories)
+        const response = await axios.get(
+          `${baseurl}/api/restaurant/getCategories`,
+          config
+        );
+        console.log(response.data.categories);
 
         setCategories(response.data.categories); // Assuming the response data is an array of categories
       } catch (error) {
@@ -42,6 +44,7 @@ export const index = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isActive, setIsActive] = useState(true);
   const [itemName, setItemName] = useState('');
+  const [itemdescription, setItemdescription] = useState('');
   const [price, setPrice] = useState('');
   const [itemimg, setItemimg] = useState('');
   const [addons, setAddons] = useState([]);
@@ -61,9 +64,7 @@ export const index = () => {
     // Additional logic for handling button click goes here
   };
 
-
-
-  const handleImageChange = (e) => {
+  const handleImageChange = e => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -76,7 +77,7 @@ export const index = () => {
     }
   };
 
-  const uploadImage = async (file) => {
+  const uploadImage = async file => {
     try {
       const token = localStorage.getItem('token');
 
@@ -91,29 +92,35 @@ export const index = () => {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
 
-      const response = await axios.post(`${baseurl}/api/restaurant/uploadItemImage`, formData, config);
+      const response = await axios.post(
+        `${baseurl}/api/restaurant/uploadItemImage`,
+        formData,
+        config
+      );
 
       console.log('Image uploaded successfully:', response.data);
-      setItemimg(response.data.url)
+      setItemimg(response.data.url);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
   };
 
-
-
-
-  const handleItemNameChange = (e) => {
+  const handleItemNameChange = e => {
     const itemNameValue = e.target.value;
     console.log('Item Name:', itemNameValue);
     setItemName(itemNameValue);
   };
+  const handleItemdescriptionChange = e => {
+    const itemdescriptionValue = e.target.value;
+    console.log('Item Name:', itemdescriptionValue);
+    setItemdescription(itemdescriptionValue);
+  };
 
-  const handlePriceChange = (e) => {
+  const handlePriceChange = e => {
     const priceValue = e.target.value;
     console.log('Price:', priceValue);
     setPrice(priceValue);
@@ -138,9 +145,6 @@ export const index = () => {
     setAddons(newAddons);
   };
 
-
-
-
   const handleAddItem = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -152,27 +156,31 @@ export const index = () => {
 
       const newItem = {
         name: itemName,
+        description: itemdescription,
         price: price,
         category: selectedCategoryId,
         addOns: addons,
-        image : itemimg,
+        image: itemimg,
       };
-      console.log(newItem)
+      console.log(newItem);
 
       const config = {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
 
-      const response = await axios.post(`${baseurl}/api/restaurant/addItem`, newItem, config);
+      const response = await axios.post(
+        `${baseurl}/api/restaurant/addItem`,
+        newItem,
+        config
+      );
 
       console.log('Item added successfully:', response.data);
 
       // Clear the form fields after successful addition
       setItemName('');
       setPrice('');
-
 
       toast.success(response.data.message, {
         position: 'top-right',
@@ -259,25 +267,35 @@ export const index = () => {
                 </div>
                 <div>
                   <Row className='my-4'>
-                  {categories.map(category => (
-          <div className="col-lg-2 col-md-3 col-xs-6" key={category.id}>
-            <button
-              className='border-0 shadow w-100 mt-3'
-              style={{
-                padding: '10px 30px',
-                borderRadius: '8px',
-                color: activeButton === category.name ? '#FFFFFF' : '#717171',
-                fontSize: '14px',
-                fontWeight: '500',
-                backgroundColor: activeButton === category.name ? '#00BF63' : '#FFFFFF',
-              }}
-              onClick={() => handleButtonClick(category._id, category.name)}
-            >
-              {category.name.toUpperCase()}
-            </button>
-          </div>
-        ))}
-
+                    {categories.map(category => (
+                      <div
+                        className='col-lg-2 col-md-3 col-xs-6'
+                        key={category.id}
+                      >
+                        <button
+                          className='border-0 shadow w-100 mt-3'
+                          style={{
+                            padding: '10px 30px',
+                            borderRadius: '8px',
+                            color:
+                              activeButton === category.name
+                                ? '#FFFFFF'
+                                : '#717171',
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            backgroundColor:
+                              activeButton === category.name
+                                ? '#00BF63'
+                                : '#FFFFFF',
+                          }}
+                          onClick={() =>
+                            handleButtonClick(category._id, category.name)
+                          }
+                        >
+                          {category.name.toUpperCase()}
+                        </button>
+                      </div>
+                    ))}
 
                     <Col lg={4} md={3} xs={6}>
                       <Link to='/AddNewCategory'>
@@ -334,19 +352,22 @@ export const index = () => {
                           accept='image/*'
                           onChange={handleImageChange}
                           style={{ display: 'none' }}
-                          ref={(input) => (fileInputRef = input)}
+                          ref={input => (fileInputRef = input)}
                         />
                         {selectedImage ? (
-
                           <>
                             <img
                               src={selectedImage}
                               alt='Selected'
                               className='my-5'
                               onClick={() => fileInputRef.click()}
-                              style={{ cursor: 'pointer', width: '300px', height: '300px', objectFit: 'contain' }}
+                              style={{
+                                cursor: 'pointer',
+                                width: '300px',
+                                height: '300px',
+                                objectFit: 'contain',
+                              }}
                             />
-
                           </>
                         ) : (
                           <>
@@ -367,13 +388,8 @@ export const index = () => {
                             >
                               Upload photo
                             </p>
-
                           </>
-
                         )}
-
-
-
                       </div>
                     </div>
                   </Col>
@@ -402,6 +418,33 @@ export const index = () => {
                       placeholder='Please enter your item name'
                       value={itemName}
                       onChange={handleItemNameChange}
+                    />
+                  </Col>{' '}
+                  <Col lg={4}>
+                    <p
+                      className='mb-3'
+                      style={{
+                        fontSize: '16px',
+                        fontWeight: '500',
+                        color: '#4C535F',
+                      }}
+                    >
+                      Description
+                    </p>
+                    <input
+                      className='w-100 border-0 p-3'
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        boxShadow: '1px 2px 11.100000381469727px 0px #0000001A',
+                        fontSize: '14px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        color: '#B5B5B5',
+                      }}
+                      type='text'
+                      placeholder='Please enter your item description'
+                      value={itemdescription}
+                      onChange={handleItemdescriptionChange}
                     />
                   </Col>
                   <Col lg={4}>
@@ -501,49 +544,72 @@ export const index = () => {
                     </p>
 
                     {addons.map((addon, index) => (
-        <div className='w-100 mt-3' key={index}>
-          <input
-            type="text"
-            className=' border-0 p-3'
-            placeholder='Addon name'
-            value={addon.name}
-            style={{
-              backgroundColor: '#FFFFFF',
-              boxShadow: '1px 2px 11.100000381469727px 0px #0000001A',
-              fontSize: '14px',
-              borderRadius: '8px',
-              fontWeight: '500',
-              color: '#B5B5B5',
-            }}
-            onChange={(event) => handleAddonNameChange(index, event)}
-          />
-          <input
-            type="text"
-            placeholder='Price'
-            className=' border-0 p-3 ms-2'
-            value={addon.price}
-            onChange={(event) => handleAddonPriceChange(index, event)}
-            style={{
-              backgroundColor: '#FFFFFF',
-              boxShadow: '1px 2px 11.100000381469727px 0px #0000001A',
-              fontSize: '14px',
-              borderRadius: '8px',
-              fontWeight: '500',
-              color: '#B5B5B5',
-            }}
-          />
-        </div>
-      ))}
+                      <div
+                        className='w-full mt-3 d-flex justify-content-between align-items-center'
+                        key={index}
+                      >
+                        <div>
+                          <input
+                            type='text'
+                            className=' border-0 p-3'
+                            placeholder='Addon name'
+                            value={addon.name}
+                            style={{
+                              backgroundColor: '#FFFFFF',
+                              boxShadow:
+                                '1px 2px 11.100000381469727px 0px #0000001A',
+                              fontSize: '14px',
+                              borderRadius: '8px',
+                              fontWeight: '500',
+                              color: '#B5B5B5',
+                            }}
+                            onChange={event =>
+                              handleAddonNameChange(index, event)
+                            }
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type='number'
+                            min='0'
+                            max='100000'
+                            step='1'
+                            placeholder='Price'
+                            className=' border-0 p-3 ms-2'
+                            value={addon.price}
+                            onChange={event =>
+                              handleAddonPriceChange(index, event)
+                            }
+                            style={{
+                              backgroundColor: '#FFFFFF',
+                              boxShadow:
+                                '1px 2px 11.100000381469727px 0px #0000001A',
+                              fontSize: '14px',
+                              borderRadius: '8px',
+                              fontWeight: '500',
+                              color: '#B5B5B5',
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
                     <div>
-                      <button type="button" className='mt-2 border-0' 
-                      style={{
-                        color: '#FFFFFF',
-                        backgroundColor: '#00BF63',
-                        padding: '11px 20px 11px 20px',
-                        borderRadius: '8px',
-                        fontSize: '16px',
-                        fontWeight: '500',
-                      }} onClick={handleAddNewAddon}> Add new</button>
+                      <button
+                        type='button'
+                        className='mt-2 border-0'
+                        style={{
+                          color: '#FFFFFF',
+                          backgroundColor: '#00BF63',
+                          padding: '11px 20px 11px 20px',
+                          borderRadius: '8px',
+                          fontSize: '16px',
+                          fontWeight: '500',
+                        }}
+                        onClick={handleAddNewAddon}
+                      >
+                        {' '}
+                        Add new
+                      </button>
                     </div>
                   </Col>
                 </Row>
@@ -577,7 +643,7 @@ export const index = () => {
                         fontWeight: '500',
                       }}
                       onClick={handleAddItem}
-                        >
+                    >
                       Add Item
                     </button>
                   </Col>

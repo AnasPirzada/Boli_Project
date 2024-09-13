@@ -47,7 +47,8 @@ body {
 
 .custom-scrollbar {
   overflow-y: auto;
-  max-height: 50%;
+  max-height: 100%;
+
 }
 
 .custom-scrollbar::-webkit-scrollbar {

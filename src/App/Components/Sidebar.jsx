@@ -151,7 +151,7 @@ const SideBar = props => {
         >
           <img src='/logouticon.svg' alt='' />
           <p
-            class='ms-0 dis  ms-md-2'
+            class='ms-0   ms-md-2'
             style={{
               fontSize: '16px',
               fontWeight: '400',

@@ -8,21 +8,17 @@ import Process from './OrderTabbarPages/Process.jsx';
 import SideContentForDelivered from './SidePageForDelivered.jsx';
 import SideContentForNew from './SidePageForNew.jsx';
 import SideContentForProcess from './SidePageForProcess.jsx';
-const Index = () =>
-{
-  const [ activeTab, setActiveTab ] = useState( 'new' );
-  const [ selectedCard, setSelectedCard ] = useState( 1 );
+const Index = () => {
+  const [activeTab, setActiveTab] = useState('new');
+  const [selectedCard, setSelectedCard] = useState(1);
 
-  const handleTabClick = tab =>
-  {
-    setActiveTab( tab );
+  const handleTabClick = tab => {
+    setActiveTab(tab);
   };
 
-  const handleSelectCard = cardId =>
-  {
-    setSelectedCard( cardId );
+  const handleSelectCard = cardId => {
+    setSelectedCard(cardId);
   };
-
 
   const cardData = [
     {
@@ -43,7 +39,6 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/Spring Salad.png',
-
         },
         {
           name: 'White Sauce Pasta',
@@ -51,8 +46,8 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/White Sauce Pasta.png',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 2,
@@ -72,9 +67,9 @@ const Index = () =>
           name: 'Spring Salad 3',
           price: 20.0,
           notes: 'with dressing',
-          quantity: 3
-        }
-      ]
+          quantity: 3,
+        },
+      ],
     },
     {
       id: 3,
@@ -87,8 +82,7 @@ const Index = () =>
           name: 'Spring Salad',
           price: 22.8,
           notes: 'without syrup',
-          quantity: 2
-
+          quantity: 2,
         },
         {
           name: 'Fried Rice',
@@ -103,8 +97,8 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/White Sauce Pasta.png',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 4,
@@ -124,8 +118,8 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/White Sauce Pasta.png',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 5,
@@ -138,8 +132,8 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/White Sauce Pasta.png',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 6,
@@ -159,12 +153,10 @@ const Index = () =>
           notes: '',
           price: 22.8,
           imageUrl: '/Spring Salad.png',
-
         },
-      ]
+      ],
     },
   ];
-
 
   const ProcesscardData = [
     {
@@ -179,7 +171,6 @@ const Index = () =>
           price: 18.1,
           imageUrl:
             'https://images.unsplash.com/photo-1675257163553-7b47b4680636?q=80&w=1452&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
         },
         {
           name: 'Spring Salad',
@@ -188,7 +179,6 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-
         },
         {
           name: 'White Sauce Pasta',
@@ -197,15 +187,14 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 2,
       discountAmount: 50.0,
       totalAmount: 580,
       data: [
-
         {
           name: 'Fried Rice',
           quantity: 2,
@@ -221,15 +210,14 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 3,
       discountAmount: 50.0,
       totalAmount: 580,
       data: [
-
         {
           name: 'Fried Rice',
           quantity: 2,
@@ -245,15 +233,14 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 4,
       discountAmount: 50.0,
       totalAmount: 580,
       data: [
-
         {
           name: 'Fried Rice',
           quantity: 2,
@@ -269,15 +256,14 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 5,
       discountAmount: 50.0,
       totalAmount: 580,
       data: [
-
         {
           name: 'Fried Rice',
           quantity: 2,
@@ -293,15 +279,14 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 6,
       discountAmount: 6846.0,
       totalAmount: 32,
       data: [
-
         {
           name: 'Fried Rice',
           quantity: 2,
@@ -317,10 +302,9 @@ const Index = () =>
           price: 22.8,
           imageUrl:
             'https://images.unsplash.com/photo-1626379907491-3bbea53919a7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        }
-      ]
+        },
+      ],
     },
-
   ];
   const DeliveredcardData = [
     {
@@ -331,8 +315,8 @@ const Index = () =>
       DeliveredItems: [
         { id: 1, name: 'Mixed Ice Cream in Sundae Cup', price: '$12' },
         { id: 2, name: 'Chocolate Brownie', price: '$8' },
-        { id: 3, name: 'Vanilla Milkshake', price: '$6' }
-      ]
+        { id: 3, name: 'Vanilla Milkshake', price: '$6' },
+      ],
     },
     {
       id: 2,
@@ -340,8 +324,8 @@ const Index = () =>
       OrderNumber: '010105',
       DeliveredItems: [
         { id: 4, name: 'Chocolate Ice Cream Cone', price: '$5' },
-        { id: 5, name: 'Strawberry Cheesecake', price: '$10' }
-      ]
+        { id: 5, name: 'Strawberry Cheesecake', price: '$10' },
+      ],
     },
     {
       id: 3,
@@ -349,8 +333,8 @@ const Index = () =>
       OrderNumber: '010106',
       DeliveredItems: [
         { id: 6, name: 'Caramel Sundae', price: '$7' },
-        { id: 7, name: 'Banana Split', price: '$9' }
-      ]
+        { id: 7, name: 'Banana Split', price: '$9' },
+      ],
     },
     {
       id: 4,
@@ -358,8 +342,8 @@ const Index = () =>
       OrderNumber: '010107',
       DeliveredItems: [
         { id: 8, name: 'Pistachio Ice Cream Cone', price: '$5' },
-        { id: 9, name: 'Fudge Brownie Sundae', price: '$8' }
-      ]
+        { id: 9, name: 'Fudge Brownie Sundae', price: '$8' },
+      ],
     },
     {
       id: 5,
@@ -367,8 +351,8 @@ const Index = () =>
       OrderNumber: '010108',
       DeliveredItems: [
         { id: 10, name: 'Mint Chocolate Chip Ice Cream', price: '$6' },
-        { id: 11, name: 'Cookies and Cream Milkshake', price: '$7' }
-      ]
+        { id: 11, name: 'Cookies and Cream Milkshake', price: '$7' },
+      ],
     },
     {
       id: 6,
@@ -376,83 +360,79 @@ const Index = () =>
       OrderNumber: '010109',
       DeliveredItems: [
         { id: 12, name: 'Butterscotch Sundae', price: '$7' },
-        { id: 13, name: 'Double Chocolate Chip Cookie', price: '$3' }
-      ]
-    }
+        { id: 13, name: 'Double Chocolate Chip Cookie', price: '$3' },
+      ],
+    },
   ];
-
-
-
-
 
   return (
     <Container fluid className='h-100'>
       <Row>
         <Col
-          xs={ 2 }
-          md={ 2 }
+          xs={2}
+          md={2}
           className='text-center p-0 shadow '
-          style={ {
+          style={{
             backgroundColor: '#FFFFFF',
             height: '100vh',
             overflowY: 'hidden',
-          } }
+          }}
         >
           <SideBar activetabe='Orders' />
         </Col>
-        <Col
-          md={ 10 }
-          xs={ 10 }
-          className='custom-scrollbar'
-          style={ { height: '100vh', overflowY: 'auto' } }
-        >
+        <Col md={10} xs={10}>
           <Row>
             <Navbar />
           </Row>
           <Row
-            className='my-0 my-md-4 m-0 m-md-2 shadow p-0 p-md-2'
-            style={ { backgroundColor: '#FFFFFF' } }
+            className='my-0 my-md-4 m-0 m-md-2 shadow p-0 p-md-2 '
+            style={{
+              backgroundColor: '#FFFFFF',
+            }}
           >
-            <Col md={ 4 } xs={ 12 } lg={ 4 } className='my-2 '>
+            <Col md={4} xs={12} lg={4} className='my-2 '>
               <Row>
-                <Col lg={ 4 } md={ 4 } xs={ 6 }>
+                <Col lg={4} md={4} xs={6}>
                   <button
-                    className={ `border-0 w-100  shadow rounded-3 px-3 p-2  ${ activeTab === 'new' ? 'buttonbg' : ''
-                      }` }
-                    style={ {
+                    className={`border-0 w-100  shadow rounded-3 px-3 p-2  ${
+                      activeTab === 'new' ? 'buttonbg' : ''
+                    }`}
+                    style={{
                       backgroundColor:
                         activeTab === 'new' ? '#00BF63' : '#FFFFFF',
                       color: activeTab === 'new' ? '#FFFFFF' : '#222222',
-                    } }
-                    onClick={ () => handleTabClick( 'new' ) }
+                    }}
+                    onClick={() => handleTabClick('new')}
                   >
                     New
                   </button>
                 </Col>
-                <Col lg={ 4 } md={ 4 } xs={ 6 }>
+                <Col lg={4} md={4} xs={6}>
                   <button
-                    className={ `border-0 w-100 px-2 shadow rounded-3 p-2  ${ activeTab === 'inProcess' ? 'buttonbg' : ''
-                      }` }
-                    style={ {
+                    className={`border-0 w-100 px-2 shadow rounded-3 p-2  ${
+                      activeTab === 'inProcess' ? 'buttonbg' : ''
+                    }`}
+                    style={{
                       backgroundColor:
                         activeTab === 'inProcess' ? '#00BF63' : '#FFFFFF',
                       color: activeTab === 'inProcess' ? '#FFFFFF' : '#222222',
-                    } }
-                    onClick={ () => handleTabClick( 'inProcess' ) }
+                    }}
+                    onClick={() => handleTabClick('inProcess')}
                   >
                     In Process
                   </button>
                 </Col>
-                <Col lg={ 4 } md={ 4 } xs={ 12 }>
+                <Col lg={4} md={4} xs={12}>
                   <button
-                    className={ `border-0 w-100 mt-3 mt-md-0 shadow rounded-3 px-3 p-2  ${ activeTab === 'delivered' ? 'buttonbg' : ''
-                      }` }
-                    style={ {
+                    className={`border-0 w-100 mt-3 mt-md-0 shadow rounded-3 px-3 p-2  ${
+                      activeTab === 'delivered' ? 'buttonbg' : ''
+                    }`}
+                    style={{
                       backgroundColor:
                         activeTab === 'delivered' ? '#00BF63' : '#FFFFFF',
                       color: activeTab === 'delivered' ? '#FFFFFF' : '#222222',
-                    } }
-                    onClick={ () => handleTabClick( 'delivered' ) }
+                    }}
+                    onClick={() => handleTabClick('delivered')}
                   >
                     Delivered
                   </button>
@@ -460,59 +440,91 @@ const Index = () =>
               </Row>
 
               <div>
-                { activeTab === 'new' && (
+                {activeTab === 'new' && (
                   <div>
-                    <New onSelectCard={ handleSelectCard } />
+                    <New onSelectCard={handleSelectCard} />
                   </div>
-                ) }
-                { activeTab === 'inProcess' && (
+                )}
+                {activeTab === 'inProcess' && (
                   <div>
-                    <Process onClickedCard={ handleSelectCard } />
+                    <Process onClickedCard={handleSelectCard} />
                   </div>
-                ) }
-                { activeTab === 'delivered' && (
+                )}
+                {activeTab === 'delivered' && (
                   <div>
-                    { ' ' }
-                    <Delivered onClickCard={ handleSelectCard } />
+                    {' '}
+                    <Delivered onClickCard={handleSelectCard} />
                   </div>
-                ) }
+                )}
               </div>
             </Col>
-            <Col md={ 8 } xs={ 12 } lg={ 8 }>
-              { activeTab === 'new' && (
+            <Col
+              md={8}
+              xs={12}
+              lg={8}
+              className='custom-scrollbar'
+              style={{
+                backgroundColor: '#FFFFFF',
+                height: '100vh',
+                overflowY: 'auto',
+              }}
+            >
+              {activeTab === 'new' && (
                 <div>
                   <SideContentForNew
-                    tableNumber={ `Table No. ${ selectedCard }` }
-                    discountAmount={ cardData.find( ( card ) => card.id === selectedCard )?.discountAmount }
-                    totalAmount={ cardData.find( ( card ) => card.id === selectedCard )?.totalAmount }
-                    data={ cardData.find( ( card ) => card.id === selectedCard )?.data }
+                    tableNumber={`Table No. ${selectedCard}`}
+                    discountAmount={
+                      cardData.find(card => card.id === selectedCard)
+                        ?.discountAmount
+                    }
+                    totalAmount={
+                      cardData.find(card => card.id === selectedCard)
+                        ?.totalAmount
+                    }
+                    data={cardData.find(card => card.id === selectedCard)?.data}
                   />
-
                 </div>
-              ) }
+              )}
 
-              { activeTab === 'inProcess' && (
+              {activeTab === 'inProcess' && (
                 <div>
                   <SideContentForProcess
-                    tableNumber={ `Table No. ${ selectedCard }` }
-
-                    discountAmount={ ProcesscardData.find( ( card ) => card.id === selectedCard )?.discountAmount }
-                    totalAmount={ ProcesscardData.find( ( card ) => card.id === selectedCard )?.totalAmount }
-                    data={ ProcesscardData.find( ( card ) => card.id === selectedCard )?.data }
+                    tableNumber={`Table No. ${selectedCard}`}
+                    discountAmount={
+                      ProcesscardData.find(card => card.id === selectedCard)
+                        ?.discountAmount
+                    }
+                    totalAmount={
+                      ProcesscardData.find(card => card.id === selectedCard)
+                        ?.totalAmount
+                    }
+                    data={
+                      ProcesscardData.find(card => card.id === selectedCard)
+                        ?.data
+                    }
                   />
                 </div>
-              ) }
-              { activeTab === 'delivered' && (
+              )}
+              {activeTab === 'delivered' && (
                 <div>
-                  { ' ' }
+                  {' '}
                   <SideContentForDelivered
-                    TableNo={ `Table No. ${ selectedCard }` }
-                    OrderNumber={ DeliveredcardData.find( ( card ) => card.id === selectedCard )?.OrderNumber }
-                    TotalAmount={ DeliveredcardData.find( ( card ) => card.id === selectedCard )?.TotalAmount }
-                    DeliveredItems={ DeliveredcardData.find( ( card ) => card.id === selectedCard )?.DeliveredItems }
+                    TableNo={`Table No. ${selectedCard}`}
+                    OrderNumber={
+                      DeliveredcardData.find(card => card.id === selectedCard)
+                        ?.OrderNumber
+                    }
+                    TotalAmount={
+                      DeliveredcardData.find(card => card.id === selectedCard)
+                        ?.TotalAmount
+                    }
+                    DeliveredItems={
+                      DeliveredcardData.find(card => card.id === selectedCard)
+                        ?.DeliveredItems
+                    }
                   />
                 </div>
-              ) }
+              )}
             </Col>
           </Row>
         </Col>

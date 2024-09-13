@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import NavBar from '../../Components/Navbar.jsx';
 import SideBar from '../../Components/Sidebar.jsx';
 import TableAssignQR from './TableAssignQR.jsx';
-import { Link } from 'react-router-dom';
 export const index = () => {
   return (
     <div>
@@ -17,21 +17,19 @@ export const index = () => {
           >
             <SideBar activetabe='QR' />
           </Col>
-          <Col
-            md={10}
-            xs={10}
-            className='custom-scrollbar'
-            style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}
-          >
+          <Col md={10} xs={10} className='' style={{}}>
             <Row>
               <NavBar />
             </Row>
 
             <Row
-              className='m-2'
+              className='m-2 custom-scrollbar'
               style={{
                 // overflowY: 'auto',
                 // height: '100vh',
+                height: '100vh',
+                overflowY: 'auto',
+                overflowX: 'hidden',
                 backgroundColor: '#FFFFFF',
                 boxShadow: '2px 6px 71.80000405175781px 0px #0000000F',
               }}

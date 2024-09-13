@@ -6,7 +6,6 @@ const mainPage = () => {
 
   const handleFileChange = e => {
     setSelectedFile(e.target.files[0]);
-    // You can perform additional actions here if needed, like uploading the file
   };
   const backgroundImageUrls = [
     'https://images.unsplash.com/photo-1555992457-b8fefdd09069?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -39,13 +38,15 @@ const mainPage = () => {
             height: '130px',
           }}
         >
-          <img src='/gallery-add.svg' alt='' />
-          <p
-            className='text-center pt-2'
-            style={{ color: '#4C535F', fontSize: '15px', fontWeight: '500' }}
-          >
-            Upload your <br /> photo
-          </p>
+          <label htmlFor='fileInput'>
+            <input
+              type='file'
+              id='fileInput'
+              style={{ display: 'none' }}
+              // onChange={handleFileChange}
+            />
+            <img src='/gallery-add.svg' alt='' role='button' />
+          </label>
         </div>
         <br />
         <hr style={{ border: '2px solid #E0E4EC' }} />

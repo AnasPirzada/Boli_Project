@@ -1,45 +1,45 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Navbar from '../../Components/Navbar.jsx';
 import SideBar from '../../Components/Sidebar.jsx';
 import LoylityCard from './LoylityCard.jsx';
-import { Link } from 'react-router-dom';
-export const index = () =>
-{
+export const index = () => {
   return (
     <div>
       <Container fluid className='  h-100'>
         <Row>
           <Col
-            xs={ 2 }
-            md={ 2 }
+            xs={2}
+            md={2}
             className=' text-center p-0 shadow '
-            style={ {
+            style={{
               backgroundColor: '#FFFFFF',
               height: '100vh',
-            } }
+            }}
           >
             <SideBar activetabe='Loyalty' />
           </Col>
-          <Col
-            md={ 10 }
-            xs={ 10 }
-            className='custom-scrollbar'
-            style={ { height: '100vh', overflowY: 'auto' } }
-          >
+          <Col md={10} xs={10}>
             <Row>
               <Navbar />
             </Row>
-            <Row className='mt-4'>
+            <Row
+              className='mt-4 custom-scrollbar'
+              style={{ height: '100vh', overflowY: 'auto' }}
+            >
               <div>
                 <div>
-                  <div className='m-2 mb-4 pb-3 shadow rounded-3 '>
+                  <div
+                    className='m-2 mb-4 pb-3 shadow rounded-3 '
+                    style={{ height: '100vh' }}
+                  >
                     <div className='d-flex justify-content-between align-items-center '>
                       <div className='p-4 d-flex flex-column justify-content-start align-items-start '>
                         <div>
                           <p
                             className='textColor'
-                            style={ { fontSize: '22px', fontWeight: '700' } }
+                            style={{ fontSize: '22px', fontWeight: '700' }}
                           >
                             Loyalty Card
                           </p>
@@ -47,11 +47,11 @@ export const index = () =>
                         <div>
                           <p
                             className='my-1'
-                            style={ {
+                            style={{
                               color: '#717171',
                               fontWeight: '400',
                               fontSize: '20px',
-                            } }
+                            }}
                           >
                             Every dollar user spends on eligible purchases, they
                             will receive 100 points.
@@ -62,7 +62,7 @@ export const index = () =>
                         <Link to='/AddLoylity'>
                           <button
                             className='border-0 bg-transparent '
-                            style={ {
+                            style={{
                               color: '#00BF63',
                               boxShadow:
                                 '2px 4px 17.600000381469727px 0px #0000002B',
@@ -70,7 +70,7 @@ export const index = () =>
                               fontSize: '14px',
                               fontWeight: '500',
                               borderRadius: '8px',
-                            } }
+                            }}
                           >
                             Add Item
                           </button>
@@ -79,8 +79,8 @@ export const index = () =>
                     </div>
 
                     <div className='my-2'>
-                      <Row className='no-gutters px-5'>
-                        <Col lg={ 3 } md={ 3 } xl={ 3 }>
+                      <Row className='no-gutters'>
+                        <Col lg={12} md={12} xl={12}>
                           <LoylityCard
                             Image='/Cheese Burger .png'
                             points='300'
@@ -159,7 +159,6 @@ export const index = () =>
           </Col>
         </Row>
       </Container>
-      
     </div>
   );
 };
