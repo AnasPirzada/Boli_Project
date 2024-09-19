@@ -1,5 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { baseUrl } from '../../Components/constants.jsx';
+
+// Helper function to format the date
+const formatDate = dateString => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-GB'); // Formats to DD/MM/YYYY
+};
+
+// Helper function to format the time (HH:mm) to 12-hour AM/PM format
+const formatTime = timeString => {
+  const [hour, minute] = timeString.split(':');
+  const date = new Date();
+  date.setHours(parseInt(hour, 10));
+  date.setMinutes(parseInt(minute, 10));
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  }).format(date);
+};
 
 export const Upcoming = () => {
   const [data, setData] = useState([]);
@@ -10,23 +29,24 @@ export const Upcoming = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        console.log(token)
         if (!token) {
           throw new Error('Token not found');
         }
 
         const response = await fetch(
-          `${baseUrl}/api/restaurant//getReservations?status=upcoming`,
+          `${baseUrl}/api/restaurant/getReservations?status=upcoming`,
           {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
+              Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
           }
         );
 
-        if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized. Please check your API token.');
+        } else if (!response.ok) {
           const errorMessage = await response.text();
           throw new Error(`Network response was not ok: ${errorMessage}`);
         }
@@ -42,7 +62,7 @@ export const Upcoming = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once on component mount
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -53,82 +73,81 @@ export const Upcoming = () => {
     return <div>Error: {error}</div>; // Display the error in the UI
   }
 
-  if (!Array.isArray(data) || data.length === 0) {
-    return <div className='ms-10'>No upcoming reservations found.</div>;
-  }
+  const renderReservations = () => {
+    const reservationsByDate = Object.keys(data).sort(); // Sort the dates in ascending order
+    let entryCount = 1;
 
-  return (
-    <div>
-      {data.map((item, index) => (
-        <div key={index} className='px-4'>
-          <p
+    return reservationsByDate.map(dateKey => {
+      const formattedDate = formatDate(dateKey);
+      return (
+        <div key={dateKey} className='px-4'>
+          <h3
             className='mt-3'
-            style={{
-              color: '#4C535F',
-              fontSize: '14px',
-              fontWeight: '500',
-              paddingLeft:'10px'
-            }}
+            style={{ color: '#4C535F', fontSize: '16px', fontWeight: 'bold' }}
           >
-            {item.maindate}
-          </p>
+            {formattedDate} {/* Display formatted date */}
+          </h3>
 
-          <div
-            key={index}
-            className='mt-3 shadow rounded-4 p-3 d-flex justify-content-between align-items-center '
-            style={{ backgroundColor: '#FFFFFF' }}
-          >
-            <p
-              className='mt-2'
-              style={{
-                color: '#444444',
-                fontSize: '13px',
-                fontWeight: '400',
-              }}
+          {data[dateKey].map((item, index) => (
+            <div
+              key={item._id}
+              className='mt-3 shadow rounded-4 p-2 d-flex justify-content-between align-items-center'
+              style={{ backgroundColor: '#FFFFFF' }}
             >
-              01.
-            </p>
-            <p
-              style={{
-                color: '#444444',
-                fontSize: '13px',
-                fontWeight: '400',
-              }}
-            >
-              {item.name}
-            </p>
-            <p
-              style={{
-                color: '#444444',
-                fontSize: '13px',
-                fontWeight: '400',
-              }}
-            >
-              {item.date}
-            </p>
-            <p
-              style={{
-                color: '#444444',
-                fontSize: '13px',
-                fontWeight: '400',
-              }}
-            >
-              {item.table}
-            </p>
-            <p
-              style={{
-                color: '#444444',
-                fontSize: '13px',
-                fontWeight: '400',
-              }}
-            >
-              {item.time}
-            </p>
-          </div>
+              <p
+                className='mt-2'
+                style={{
+                  color: '#444444',
+                  fontSize: '13px',
+                  fontWeight: '400',
+                }}
+              >
+                {entryCount++}. {/* Display entry number */}
+              </p>
+              <p
+                style={{
+                  color: '#444444',
+                  fontSize: '13px',
+                  fontWeight: '400',
+                }}
+              >
+                {item.customer?.name}
+              </p>
+              <p
+                style={{
+                  color: '#444444',
+                  fontSize: '13px',
+                  fontWeight: '400',
+                }}
+              >
+                {formatDate(item.date)}
+              </p>
+              <p
+                style={{
+                  color: '#444444',
+                  fontSize: '13px',
+                  fontWeight: '400',
+                }}
+              >
+                {item.tableFor}
+              </p>
+              <p
+                style={{
+                  color: '#444444',
+                  fontSize: '13px',
+                  fontWeight: '400',
+                }}
+              >
+                {formatTime(item.time)}
+              </p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  );
+      );
+    });
+  };
+
+  return <div>{renderReservations()}</div>;
 };
 
 export default Upcoming;

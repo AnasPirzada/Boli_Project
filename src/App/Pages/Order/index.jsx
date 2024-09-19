@@ -380,7 +380,16 @@ const Index = () => {
         >
           <SideBar activetabe='Orders' />
         </Col>
-        <Col md={10} xs={10}>
+        <Col
+          md={10}
+          xs={10}
+          className='custom-scrollbar'
+          style={{
+            backgroundColor: '#FFFFFF',
+            height: '100vh',
+            overflowY: 'auto',
+          }}
+        >
           <Row>
             <Navbar />
           </Row>
@@ -458,17 +467,7 @@ const Index = () => {
                 )}
               </div>
             </Col>
-            <Col
-              md={8}
-              xs={12}
-              lg={8}
-              className='custom-scrollbar'
-              style={{
-                backgroundColor: '#FFFFFF',
-                height: '100vh',
-                overflowY: 'auto',
-              }}
-            >
+            <Col md={8} xs={12} lg={8}>
               {activeTab === 'new' && (
                 <div>
                   <SideContentForNew

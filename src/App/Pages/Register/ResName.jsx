@@ -3,7 +3,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ResName = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+
   const initialValues = {
     name: '',
   };
@@ -19,9 +20,7 @@ const ResName = () => {
   };
 
   const handleSubmit = values => {
-    // Handle form submission here
-    console.log(values);
-    navigate('/restaurantlocation');
+    navigate('/restaurantlocation', { state: { name: values.name } });
   };
 
   return (
@@ -63,7 +62,6 @@ const ResName = () => {
                 </div>
 
                 <div className='mt-4'>
-                  {/* <Link to="/restaurantlocation"> */}
                   <button
                     type='submit'
                     className='border rounded-2 p-2 w-100'
@@ -72,7 +70,6 @@ const ResName = () => {
                   >
                     Next
                   </button>
-                  {/* </Link> */}
                 </div>
               </Form>
             )}

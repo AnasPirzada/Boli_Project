@@ -99,26 +99,6 @@ const index = () => {
                     ) : (
                       <CanceledReservations />
                     )}
-                    {/* <p
-                        style={{
-                          color: '#4C535F',
-                          fontSize: '14px',
-                          fontWeight: '500',
-                        }}
-                      >
-                        27/02/2024
-                      </p>
-
-                      <div
-                        className='mt-3 shadow rounded-4 p-3 d-flex justify-content-between align-items-center '
-                        style={{ backgroundColor: '#FFFFFF' }}
-                      >
-                        <p>01.</p>
-                        <p>Thomas Shelby</p>
-                        <p>16/02/2024</p>
-                        <p>Table of 1</p>
-                        <p>08:00 PM</p>
-                      </div> */}
                   </div>
                 </div>
               </div>
