@@ -145,15 +145,14 @@ const SideBar = props => {
         </Link>
 
         <div
-          class='d-flex mt-5  justify-content-center align-items-center shadow p-3 w-50 bottom-0  mx-auto my-auto rounded-3 '
+          class='d-flex mt-5  justify-content-center align-items-center shadow p-2 md:p-3 bottom-0  mx-auto my-auto rounded-3 '
           role='button'
           onClick={handleShow}
         >
           <img src='/logouticon.svg' alt='' />
           <p
-            class='ms-0   ms-md-2'
+            class='ms-0  fs-8 ms-md-2'
             style={{
-              fontSize: '16px',
               fontWeight: '400',
               color: '#00BF63',
             }}

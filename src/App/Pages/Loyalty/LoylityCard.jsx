@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Row,Placeholder } from 'react-bootstrap';
+import { Card, Col, Placeholder, Row } from 'react-bootstrap';
 import { baseUrl } from '../../Components/constants.jsx';
 
 // const CardSkeleton = () => (
@@ -55,7 +55,6 @@ const CardSkeleton = () => (
             <Placeholder as={Card.Text} animation='wave'>
               <Placeholder xs={4} />
             </Placeholder>
-            <Placeholder.Button variant='primary' xs={6} />
           </Card.Body>
         </Card>
       </Col>

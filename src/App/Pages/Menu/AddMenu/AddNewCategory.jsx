@@ -1,15 +1,17 @@
 import axios from 'axios'; // Import axios
 import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../../../Components/Navbar.jsx';
 import SideBar from '../../../Components/Sidebar.jsx';
 import { baseUrl } from '../../../Components/constants.jsx';
 import GetCategory from './GetCategory.jsx';
+
 export const AddNewCategory = () => {
   const [name, setName] = useState('');
 
-  const handleAddCategory = async name => {
+  const handleAddCategory = async () => {
     try {
       // Ensure name is not empty
       if (!name.trim()) {
@@ -36,9 +38,14 @@ export const AddNewCategory = () => {
         }
       );
       console.log('Category added successfully:', response.data);
-      // Add any further logic here after successful response from server
+      toast.success('Category added successfully');
+      // Clear the input field after adding category
+      setName('');
+
+      // Optionally refresh categories if needed
     } catch (error) {
       console.error('Error while adding category:', error);
+      toast.error('Error while adding category:');
       // Handle error here
     }
   };
@@ -47,11 +54,21 @@ export const AddNewCategory = () => {
     setName(event.target.value);
   };
 
-  const handleClickAddCategory = () => {
-    handleAddCategory(name); // Pass the current value of name to handleAddCategory
-  };
   return (
     <div>
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+        transition='Bounce'
+      />
       <Container fluid className='  h-100'>
         <Row>
           <Col
@@ -102,14 +119,16 @@ export const AddNewCategory = () => {
                     <Col lg={1} className='text-end'>
                       <div style={{ width: '45%' }}>
                         <p
-                          className='my-0'
+                          className='my-0 cursor-pointer'
                           style={{
                             color: '#00BF63',
                             fontSize: '16px',
                             fontWeight: '500',
                             borderBottom: '1px solid #00BF63',
+                            cursor: 'pointer',
                           }}
-                          // onClick={handleAddCategory}
+                          // Correct function handler for Add click
+                          onClick={handleAddCategory}
                         >
                           Add
                         </p>
@@ -144,7 +163,8 @@ export const AddNewCategory = () => {
                         color: '#00BF63',
                         boxShadow: '2px 4px 17.600000381469727px 0px #0000002B',
                       }}
-                      onClick={handleClickAddCategory}
+                      // Add New Category button triggers the correct function
+                      onClick={handleAddCategory}
                     >
                       Add New Category
                     </button>

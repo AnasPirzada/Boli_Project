@@ -8,52 +8,64 @@ import { baseUrl } from '../../Components/constants.jsx';
 
 const MenuTabbar = () => {
   const [menuData, setMenuData] = useState(null);
-  const [activeTab, setActiveTab] = useState('Starter');
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [activeTab, setActiveTab] = useState(null); // Initially set to null
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchMenuData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('Authentication token not found');
-        }
+  // Predefined category order
+  const categoryOrder = ['Starter', 'Main', 'Dessert', 'Drink'];
 
-        const response = await axios.get(`${baseUrl}/api/restaurant/getMenu`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
+  // Move fetchMenuData outside useEffect for reusability
+  const fetchMenuData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Authentication token not found');
+      }
+
+      const response = await axios.get(`${baseUrl}/api/restaurant/getMenu`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (response.data.message === 'Menu fetched successfully') {
+        const menuItems = response.data.menu.items;
+        const categorizedMenu = {};
+
+        menuItems.forEach(item => {
+          const category = item?.category ? item?.category?.name : 'All Items';
+          if (!categorizedMenu[category]) {
+            categorizedMenu[category] = [];
+          }
+          categorizedMenu[category].push(item);
         });
 
-        if (response.data.message === 'Menu fetched successfully') {
-          const menuItems = response.data.menu.items;
-          const categorizedMenu = {};
-
-          menuItems.forEach(item => {
-            const category = item?.category
-              ? item?.category?.name
-              : 'All Items';
-            if (!categorizedMenu[category]) {
-              categorizedMenu[category] = [];
-            }
-            categorizedMenu[category].push(item);
-          });
-
-          setMenuData(categorizedMenu);
-          setError(null);
-        } else {
-          throw new Error('Failed to fetch menu data');
+        // Set the first category with items as the active tab
+        const firstCategoryWithItems = categoryOrder.find(
+          category =>
+            categorizedMenu[category] && categorizedMenu[category].length > 0
+        );
+        if (firstCategoryWithItems) {
+          setActiveTab(firstCategoryWithItems);
         }
-      } catch (error) {
-        console.error(error);
-        toast.error(`Error fetching menu data: ${error.message}`);
-        setError(error.message);
-      } finally {
-        setLoading(false); // Stop loading once data is fetched
-      }
-    };
 
+        setMenuData(categorizedMenu);
+        setError(null);
+      } else {
+        throw new Error('Failed to fetch menu data');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(`Error fetching menu data: ${error.message}`);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch menu data when the component mounts
+  useEffect(() => {
     fetchMenuData();
   }, []);
 
@@ -74,19 +86,23 @@ const MenuTabbar = () => {
       );
 
       if (response.data.message === 'Item deleted successfully') {
-        // Refresh menu data after successful deletion
-        fetchMenuData();
-        console.log('Item deleted successfully');
+        toast.success('Item deleted successfully');
+        // Refetch the updated menu data after deletion
+        await fetchMenuData();
+        // Check if the active tab is now empty and display a message
+        if (!menuData[activeTab] || menuData[activeTab].length === 0) {
+          toast.info(`No menu added for this category (${activeTab})`);
+        }
       } else {
         throw new Error('Failed to delete item');
       }
     } catch (error) {
       console.error(error);
+      toast.error('Failed to delete item');
       setError(error.message);
     }
   };
 
-  console.log(handleDelete);
   return (
     <>
       <div>
@@ -107,7 +123,13 @@ const MenuTabbar = () => {
           <TabList className='d-flex flex-column flex-sm-row justify-content-between align-items-center'>
             <TabList>
               {menuData &&
-                Object.keys(menuData).map(category => (
+                // Display categories in specified order first, then any additional ones
+                [
+                  ...categoryOrder,
+                  ...Object.keys(menuData).filter(
+                    category => !categoryOrder.includes(category)
+                  ),
+                ].map(category => (
                   <button
                     key={category}
                     style={{
@@ -179,58 +201,64 @@ const MenuTabbar = () => {
             ) : (
               menuData && (
                 <Row key={activeTab} className='mt-3'>
-                  {menuData[activeTab]?.map(item => (
-                    <Col md={3} key={item._id}>
-                      <div className='bg-white shadow rounded-4 mt-4'>
-                        <div className='w-100 h-[198px]'>
-                          <img
-                            src={item.image}
-                            alt=''
-                            className='w-100 h-full object-cover rounded-[15px]'
-                            style={{
-                              backgroundPosition: 'center',
-                              borderRadius: '15px 15px 15px 15px ',
-                            }}
-                          />
-                        </div>
+                  {menuData[activeTab]?.length > 0 ? (
+                    menuData[activeTab].map(item => (
+                      <Col md={3} key={item._id}>
+                        <div className='bg-white shadow rounded-4 mt-4'>
+                          <div className='w-100 h-[198px]'>
+                            <img
+                              src={item.image}
+                              alt=''
+                              className='w-100 h-full object-cover rounded-[15px]'
+                              style={{
+                                backgroundPosition: 'center',
+                                borderRadius: '15px 15px 15px 15px ',
+                              }}
+                            />
+                          </div>
 
-                        <div className='ms-2 py-2'>
-                          <p
-                            style={{
-                              color: '#424242',
-                              fontSize: '18px',
-                              fontWeight: '400',
-                            }}
-                          >
-                            <b> {item.name}</b>
-                          </p>
-                          <div className='d-flex  justify-content-between align-items-center'>
+                          <div className='ms-2 py-2'>
                             <p
                               style={{
-                                color: '#00BF63',
+                                color: '#424242',
                                 fontSize: '18px',
-                                fontWeight: '600',
+                                fontWeight: '400',
                               }}
                             >
-                              $ {item.price}
+                              <b> {item.name}</b>
                             </p>
-                            <button
-                              onClick={() => handleDelete(item._id)}
-                              className='me-2 text-danger bg-transparent'
-                              style={{
-                                fontSize: '18px',
-                                fontWeight: '600',
-                                border: 'none',
-                                borderBottom: '2px solid #E54C38', // Only bottom border
-                              }}
-                            >
-                              Delete
-                            </button>
+                            <div className='d-flex  justify-content-between align-items-center'>
+                              <p
+                                style={{
+                                  color: '#00BF63',
+                                  fontSize: '18px',
+                                  fontWeight: '600',
+                                }}
+                              >
+                                $ {item.price}
+                              </p>
+                              <button
+                                onClick={() => handleDelete(item._id)}
+                                className='me-2 text-danger bg-transparent'
+                                style={{
+                                  fontSize: '18px',
+                                  fontWeight: '600',
+                                  border: 'none',
+                                  borderBottom: '2px solid #E54C38',
+                                }}
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Col>
-                  ))}
+                      </Col>
+                    ))
+                  ) : (
+                    <p className='text-center'>
+                      No menu added for this category
+                    </p>
+                  )}
                 </Row>
               )
             )}

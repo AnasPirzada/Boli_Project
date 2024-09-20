@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Navbar from '../../Components/Navbar.jsx';
 import SideBar from '../../Components/Sidebar.jsx';
@@ -14,7 +14,7 @@ const AddQR = () => {
             className='text-center p-0 shadow'
             style={{ backgroundColor: '#FFFFFF', height: '100vh' }}
           >
-            <SideBar activetab='QR' />
+            <SideBar activetabe='QR' />
           </Col>
           <Col
             md={10}
