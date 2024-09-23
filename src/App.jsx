@@ -1,31 +1,28 @@
-import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import LoginPage from './App/Pages/Authentication/Login.jsx';
-import Orders from './App/Pages/Order/index.jsx';
-import Order from './App/Pages/Order/index.jsx';
-import Menu from './App/Pages/Menu/index.jsx';
-import Add from './App/Pages/Menu/AddMenu/index.jsx';
-import Reservations from './App/Pages/Reservations/index.jsx';
-import Registered from './App/Pages/Registered/index.jsx';
-import Loyalty from './App/Pages/Loyalty/index.jsx';
-import AddLoylity from './App/Pages/Loyalty/AddLoylity.jsx';
 import History from './App/Pages/History/index.jsx';
-import Stats from './App/Pages/Stats/index.jsx';
-import Settings from './App/Pages/Setting/index.jsx';
-import Notification from './App/Pages/Notification/index.jsx';
-import Login from './App/Pages/Login/Login.jsx';
-import QR from './App/Pages/QR/index.jsx';
-import RestaurantName from './App/Pages/Register/ResName.jsx';
-import RestaurantLocation from './App/Pages/Register/RegLocation.jsx';
 import ForgotPassword from './App/Pages/Login/ForgotPassword.jsx';
-import SignUp from './App/Pages/Register/SignUp.jsx';
-import Otp from './App/Pages/Register/OtpVerification.jsx';
+import Login from './App/Pages/Login/Login.jsx';
+import AddLoylity from './App/Pages/Loyalty/AddLoylity.jsx';
+import Loyalty from './App/Pages/Loyalty/index.jsx';
 import AddNewCategory from './App/Pages/Menu/AddMenu/AddNewCategory.jsx';
+import Add from './App/Pages/Menu/AddMenu/index.jsx';
+import Menu from './App/Pages/Menu/index.jsx';
+import Notification from './App/Pages/Notification/index.jsx';
+import Orders from './App/Pages/Order/index.jsx';
 import AddNewQr from './App/Pages/QR/AddQr.jsx';
+import QR from './App/Pages/QR/index.jsx';
+import Otp from './App/Pages/Register/OtpVerification.jsx';
+import RestaurantLocation from './App/Pages/Register/RegLocation.jsx';
+import RestaurantName from './App/Pages/Register/ResName.jsx';
+import SignUp from './App/Pages/Register/SignUp.jsx';
+import Registered from './App/Pages/Registered/index.jsx';
+import Reservations from './App/Pages/Reservations/index.jsx';
+import Settings from './App/Pages/Setting/index.jsx';
+import Stats from './App/Pages/Stats/index.jsx';
 
 function App() {
   return (

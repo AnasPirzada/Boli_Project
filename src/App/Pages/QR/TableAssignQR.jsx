@@ -15,6 +15,7 @@ export const TableAssignQR = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response);
 
       setQRCodes(response.data.qrCodes);
     } catch (error) {
@@ -41,7 +42,6 @@ export const TableAssignQR = () => {
               <Placeholder as={Card.Text} animation='wave'>
                 <Placeholder xs={4} />
               </Placeholder>
-              <Placeholder.Button variant='primary' xs={6} />
             </Card.Body>
           </Card>
         </Col>
@@ -108,7 +108,7 @@ export const TableAssignQR = () => {
                     style={{
                       borderRadius: '5.31px',
                       height: '200px',
-                      width: '240px',
+                      width: '100%',
                       backgroundColor: '#FFFFFF',
                       boxShadow:
                         ' 0.6638888716697693px 1.3277777433395386px 7.369166851043701px 0px #0000001A',

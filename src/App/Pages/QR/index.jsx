@@ -27,14 +27,13 @@ export const index = () => {
               style={{
                 // overflowY: 'auto',
                 // height: '100vh',
-                height: '100vh',
                 overflowY: 'auto',
                 overflowX: 'hidden',
                 backgroundColor: '#FFFFFF',
                 boxShadow: '2px 6px 71.80000405175781px 0px #0000000F',
               }}
             >
-              <div className='p-3 d-flex justify-content-between align-items-center '>
+              <div className='p-3 d-flex justify-content-between  '>
                 <p
                   style={{
                     color: '#00BF63',

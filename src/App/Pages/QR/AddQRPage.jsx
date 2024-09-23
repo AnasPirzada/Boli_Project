@@ -12,7 +12,7 @@ export const AddQRPage = () => {
   });
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = e => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -20,10 +20,8 @@ export const AddQRPage = () => {
         setSelectedImage(reader.result);
       };
       reader.readAsDataURL(file);
-    setTextData({ ...textData, image: file });
-
+      setTextData({ ...textData, image: file });
     }
-
   };
 
   let fileInputRef;
@@ -57,6 +55,8 @@ export const AddQRPage = () => {
           },
         }
       );
+      console.log(response);
+
       toast.success(response.data.message, {
         position: 'top-right',
         autoClose: 5000,
@@ -180,35 +180,40 @@ export const AddQRPage = () => {
                 borderRadius: '5.31px',
                 boxShadow:
                   ' 0.6638888716697693px 1.3277777433395386px 7.369166851043701px 0px #0000001A',
-                  width:'300px'
-                  , height:'300px'
+                width: '300px',
+                height: '300px',
               }}
             >
               {/* Input for selecting image */}
               <input
-        type='file'
-        accept='image/*'
-        onChange={handleImageChange}
-        style={{ display: 'none' }}
-        ref={(input) => (fileInputRef = input)}
-      />
-      {selectedImage ? (
-        <img
-          src={selectedImage}
-          alt='Selected'
-          className='my-5'
-          onClick={() => fileInputRef.click()}
-          style={{ cursor: 'pointer' ,width:'300px', height:'300px' ,objectFit:'contain' }}
-        />
-      ) : (
-        <img
-          src='/uploadQR.png'
-          alt='Upload QR'
-          className='my-5'
-          onClick={() => fileInputRef.click()}
-          style={{ cursor: 'pointer'  }}
-        />
-      )}
+                type='file'
+                accept='image/*'
+                onChange={handleImageChange}
+                style={{ display: 'none' }}
+                ref={input => (fileInputRef = input)}
+              />
+              {selectedImage ? (
+                <img
+                  src={selectedImage}
+                  alt='Selected'
+                  className='my-5'
+                  onClick={() => fileInputRef.click()}
+                  style={{
+                    cursor: 'pointer',
+                    width: '300px',
+                    height: '300px',
+                    objectFit: 'contain',
+                  }}
+                />
+              ) : (
+                <img
+                  src='/uploadQR.png'
+                  alt='Upload QR'
+                  className='my-5'
+                  onClick={() => fileInputRef.click()}
+                  style={{ cursor: 'pointer' }}
+                />
+              )}
             </div>
           </Col>
         </Row>

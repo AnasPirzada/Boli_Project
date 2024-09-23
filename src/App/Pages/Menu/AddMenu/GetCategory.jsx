@@ -7,63 +7,63 @@ import { baseUrl } from '../../../Components/constants.jsx';
 const GetCategory = () => {
   const [categories, setCategories] = useState([]);
 
+  // Function to fetch categories from the server
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('Token not found. Please login.');
+        return;
+      }
+
+      const response = await axios.get(
+        `${baseUrl}/api/restaurant/getCategories`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setCategories(response.data.categories);
+    } catch (error) {
+      console.error('Error while fetching categories:', error);
+      toast.error('Error while fetching categories');
+    }
+  };
+
   // Fetch categories when the component mounts
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          console.error('Token not found in localStorage');
-          toast.error('Token not found. Please login.');
-          return;
-        }
-
-        const response = await axios.get(
-          `${baseUrl}/api/restaurant/getCategories`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Ensure token is properly passed
-            },
-          }
-        );
-
-        console.log('Categories fetched successfully:', response.data);
-        setCategories(response.data.categories);
-      } catch (error) {
-        console.error('Error while fetching categories:', error);
-        toast.error('Error while fetching categories');
-      }
-    };
-
     fetchCategories();
   }, []);
 
   // Function to handle category deletion
   const handleDeleteCategory = async categoryId => {
     try {
-      console.log('Deleting category with ID:', categoryId); // Log the correct ID
       const token = localStorage.getItem('token');
       if (!token) {
         toast.error('Authentication token not found');
         return;
       }
-      console.log('token', token);
 
-      // Make the API request to delete the category using the DELETE method
+      console.log('Deleting category with ID:', categoryId);
+      console.log('Token:', token);
+
+      // Make the API request using the PUT method
       const response = await axios.put(
-        `${baseUrl}/api/restaurant/deleteCategory/${categoryId}`, // Use DELETE method
+        `${baseUrl}/api/restaurant/deleteCategory/${categoryId}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`, // Pass the token in the headers
           },
         }
       );
+      console.log(response);
 
-      if (response.data.message === 'Category deleted successfully') {
-        // Remove the deleted category from the state
-        setCategories(
-          categories.filter(category => category._id !== categoryId)
-        );
+      if (response.data.message === 'Category deleted successfully.') {
+        // After deletion, fetch the updated list of categories
+        fetchCategories(); // This reloads the categories and updates categories.map with fresh data
         toast.success('Category deleted successfully');
       } else {
         throw new Error('Failed to delete category');
@@ -126,7 +126,6 @@ const GetCategory = () => {
                   fontWeight: '500',
                   borderBottom: '1px solid #FD342A',
                 }}
-                // Add the delete function to the onClick event
                 onClick={() => handleDeleteCategory(category._id)}
               >
                 Delete
