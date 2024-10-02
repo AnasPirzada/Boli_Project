@@ -91,6 +91,7 @@ const Login = () => {
           >
             BOLI
             {/* helo */}
+            {/* helo */}
           </h1>
           <div className='d-flex flex-column justify-content-center h-75 mobv-login'>
             <Formik
