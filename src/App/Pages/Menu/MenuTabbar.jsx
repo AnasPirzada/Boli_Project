@@ -28,6 +28,7 @@ const MenuTabbar = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
+      console.log(response);
 
       if (response.data.message === 'Menu fetched successfully') {
         const menuItems = response.data.menu.items;

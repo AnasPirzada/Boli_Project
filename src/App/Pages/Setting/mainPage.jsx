@@ -45,6 +45,7 @@ const MainPage = () => {
           profilePicture: response.data.profilePicture || '',
         });
         setError(null);
+        console.log(response);
       } catch (error) {
         console.error('Error fetching profile data:', error);
         setError('Failed to fetch profile data.');
