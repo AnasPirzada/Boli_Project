@@ -6,26 +6,28 @@ import { baseUrl } from '../../../Components/constants.jsx';
 
 const GetCategory = () => {
   const [categories, setCategories] = useState([]);
-
+  localStorage.getItem('restaurantId');
   // Function to fetch categories from the server
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
+      const restaurantId = localStorage.getItem('restaurantId');
       if (!token) {
         toast.error('Token not found. Please login.');
         return;
       }
 
       const response = await axios.get(
-        `${baseUrl}/api/restaurant/getCategories`,
+        `${baseUrl}api/restaurant/getCategoriesById/${restaurantId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
+      console.log(response);
 
-      setCategories(response.data.categories);
+      setCategories(response.data.data.categories);
     } catch (error) {
       console.error('Error while fetching categories:', error);
       toast.error('Error while fetching categories');

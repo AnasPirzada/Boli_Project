@@ -29,16 +29,20 @@ export const Upcoming = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
+        const restaurantId = localStorage.getItem('restaurantId');
+        console.log(restaurantId);
+
         if (!token) {
           throw new Error('Token not found');
         }
 
         const response = await fetch(
-          `${baseUrl}/api/restaurant/getReservations?status=upcoming`,
+          `${baseUrl}api/restaurant/getReservations/?status=upcoming`,
           {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${token}`,
+              id: restaurantId,
               'Content-Type': 'application/json',
             },
           }
@@ -52,6 +56,8 @@ export const Upcoming = () => {
         }
 
         const jsonData = await response.json();
+        console.log(jsonData);
+
         setData(jsonData.data);
       } catch (error) {
         console.error('API Error:', error.message); // Log the error to the console

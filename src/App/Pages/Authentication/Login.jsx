@@ -10,7 +10,7 @@ export const Login = () => {
 
   const handlelogin = async () => {
     try {
-      const response = await axios.post(`${baseUrl}/api/restaurant/login`, {
+      const response = await axios.post(`${baseUrl}api/restaurant/login`, {
         email,
         password,
       });

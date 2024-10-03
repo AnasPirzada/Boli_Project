@@ -13,7 +13,7 @@ const SignUp = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    // confirmPassword: '',
   };
 
   const validate = values => {
@@ -33,9 +33,9 @@ const SignUp = () => {
       errors.password = 'Password is required';
     }
 
-    if (!values.password !== !values.confirmPassword) {
-      errors.confirmPassword = 'Password does not match';
-    }
+    // if (!values.password !== !values.confirmPassword) {
+    //   errors.confirmPassword = 'Password does not match';
+    // }
 
     return errors;
   };
@@ -43,7 +43,7 @@ const SignUp = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
-        `${baseurl}/api/restaurant/register`,
+        `${baseurl}api/restaurant/register`,
         values
       );
       console.log(response.data); // Handle the response from the server

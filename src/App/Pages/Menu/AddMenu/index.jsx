@@ -1,13 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { baseurl } from '../../../../const.js';
 import Navbar from '../../../Components/Navbar.jsx';
 import SideBar from '../../../Components/Sidebar.jsx';
+
 export const index = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
@@ -17,6 +17,7 @@ export const index = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
+        const restaurantId = localStorage.getItem('restaurantId');
 
         const config = {
           headers: {
@@ -25,12 +26,12 @@ export const index = () => {
         };
 
         const response = await axios.get(
-          `${baseurl}/api/restaurant/getCategories`,
+          `${baseurl}api/restaurant/getCategoriesById/${restaurantId}`,
           config
         );
-        console.log(response.data.categories);
+        console.log(response);
 
-        setCategories(response.data.categories); // Assuming the response data is an array of categories
+        setCategories(response.data.data.categories);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

@@ -40,7 +40,11 @@ const Login = () => {
       const token = response.data.token;
       localStorage.setItem('token', token);
 
-      console.log(response.data);
+      console.log(response);
+      console.log('restaurant id', response.data.data.restaurant._id);
+
+      // Set the restaurant ID properly in localStorage
+      localStorage.setItem('restaurantId', response.data.data.restaurant._id);
       toast.promise(Promiseres, {
         pending: 'Logging in...',
         success: `${response.data.message}`,
@@ -90,8 +94,6 @@ const Login = () => {
             style={{ color: '#00BF63' }}
           >
             BOLI
-            {/* helo */}
-            {/* helo */}
           </h1>
           <div className='d-flex flex-column justify-content-center h-75 mobv-login'>
             <Formik
